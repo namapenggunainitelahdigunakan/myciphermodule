@@ -134,3 +134,34 @@ class rot:
             elif karakter == " ":
                 tali += " "
         return tali
+#Vignere
+class vigenere:
+    alp = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    def __init__(self, text, key):
+        self.text = text.upper()
+        self.key = key.upper()
+    def cipher(self):
+        res = []
+        ki = 0
+        for i in range(0, len(self.text)):
+            if self.text[i] in vigenere.alp:
+                it = vigenere.alp.index(self.text[i])
+                ik = vigenere.alp.index(self.key[ki % len(self.key)])
+                res.append(vigenere.alp[(it + ik) % 26])
+                ki += 1
+            else:
+                res.append(self.text[i])
+        return "".join(res)
+    def decipher(self):
+        res = []
+        ki = 0
+        for i in range(0, len(self.text)):
+            if self.text[i] in vigenere.alp:
+                it = vigenere.alp.index(self.text[i])
+                ik = vigenere.alp.index(self.key[ki % len(self.key)])
+                res.append(vigenere.alp[(it - ik + 26) % 26])
+                ki += 1
+            else:
+                res.append(self.text[i])
+        return "".join(res)
+        
